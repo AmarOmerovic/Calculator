@@ -13,27 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end"
+        android:layout_weight="2.3"
         android:background="@color/text_bg_color"
-        android:scrollbars="none"
         android:layoutDirection="rtl"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:layout_weight="2.3">
+        android:scrollbars="none">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="bottom|end"
             android:ellipsize="marquee"
-            android:textDirection="ltr"
             android:fontFamily="@font/b612_bold"
+            android:gravity="bottom|end"
             android:importantForAutofill="no"
             android:maxLines="5"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/number_0"
             android:textColor="@color/black"
+            android:textDirection="ltr"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:ignore="LabelFor" />
@@ -53,9 +52,9 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="-8dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:layout_marginBottom="-8dp"
             app:divider="@drawable/divider"
             app:showDividers="middle">
 
@@ -85,8 +84,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="-8dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             app:divider="@drawable/divider"
             app:showDividers="middle">
@@ -117,8 +116,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="-8dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             app:divider="@drawable/divider"
             app:showDividers="middle">
@@ -148,8 +147,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="-8dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             app:divider="@drawable/divider"
             app:showDividers="middle">
@@ -188,8 +187,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="-8dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton

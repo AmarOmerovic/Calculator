@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         string = ""
 
         binding.clear.setOnClickListener {
-            binding.textView.text = "0"
             string = ""
+            binding.textView.text = string
         }
 
         binding.dot.setOnClickListener {
@@ -76,12 +76,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.number0.setOnClickListener {
             if (string.isEmpty()) {
+                string += "0"
+                binding.textView.text = string
                 return@setOnClickListener
             } else if (string == "Infinity" || string == "NaN") {
                 string = ""
                 processNumberClick('0')
             } else {
-                processNumberClick('0')
+                if (string.contains(" / ") || string.contains(" + ") || string.contains(" * ") || string.contains(
+                        " - "
+                    )
+                ) {
+                    val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
+                    if (numbers[numbers.size - 1] == "0") {
+                        return@setOnClickListener
+                    } else {
+                        processNumberClick('0')
+                    }
+                } else if (string.contains(".")) {
+                    processNumberClick('0')
+                }
             }
         }
         binding.number1.setOnClickListener { processNumberClick('1') }
@@ -185,18 +199,26 @@ class MainActivity : AppCompatActivity() {
                 " - "
             )
         ) {
-            if (string.length < 33) {
+            val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
+            if (numbers[numbers.size - 1] != "0" && (string.length < 33  || (string.contains(".") && string.length < 34))) {
                 addCharToString(character)
-            } else {
+            } else if(numbers[numbers.size - 1] == "0" && !numbers[numbers.size - 1].contains(".")) {
+                string = string.dropLast(1)
+                addCharToString(character)
+            }
+            else {
                 showSnackbar()
             }
-        } else {
-            if (string.length < 15) {
-                addCharToString(character)
 
+
+        } else if (string == "0") {
+            string = "$character"
+            binding.textView.text = string
+        } else {
+            if (string.length < 15 || (string.contains(".") && string.length < 16)) {
+                addCharToString(character)
             } else {
                 showSnackbar()
-
             }
         }
     }
@@ -204,9 +226,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun processOperatorClick(char: Char) {
 
-        if (string.isEmpty() || string == "" || string == "NaN" || string == "Infinity" || string == "-") {
+        if (string.isEmpty() || string == "" || string == "NaN" || string == "Infinity") {
             string = ""
             return
+        } else if (string == "-") {
+            if (char == '+') {
+                string = ""
+                binding.textView.text = string
+                return
+            } else {
+                return
+            }
         } else if (string.contains(" + ") || string.contains(" - ") || string.contains(" / ") || string.contains(
                 " * "
             )
