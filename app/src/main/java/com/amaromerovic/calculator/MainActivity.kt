@@ -1,7 +1,6 @@
 package com.amaromerovic.calculator
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             if (string == "-") {
                 return@setOnClickListener
             }
-
             if (string.isEmpty() || string == "Infinity" || string == "NaN") {
                 string = ""
                 string += "0."
@@ -44,10 +42,8 @@ class MainActivity : AppCompatActivity() {
                 string += "."
                 binding.textView.text = string
             } else {
-                if (string.contains(" / ") || string.contains(" * ") || string.contains(" + ") || string.contains(
-                        " - "
-                    )
-                ) {
+                if (string.contains(" / ") || string.contains(" * ")
+                    || string.contains(" + ") || string.contains(" - ")) {
                     val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
                     if (numbers[numbers.size - 1].contains(".")) {
                         return@setOnClickListener
@@ -59,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                     }
-
                 } else {
                     if (string.contains(".")) {
                         return@setOnClickListener
@@ -68,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                         binding.textView.text = string
                     }
                 }
-
             }
         }
 
@@ -83,10 +77,7 @@ class MainActivity : AppCompatActivity() {
                 string = ""
                 processNumberClick('0')
             } else {
-                if (string.contains(" / ") || string.contains(" + ") || string.contains(" * ") || string.contains(
-                        " - "
-                    )
-                ) {
+                if (string.contains(" / ") || string.contains(" + ") || string.contains(" * ") || string.contains(" - ")) {
                     val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
                     if (numbers[numbers.size - 1] == "0") {
                         return@setOnClickListener
@@ -98,6 +89,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+
         binding.number1.setOnClickListener { processNumberClick('1') }
         binding.number2.setOnClickListener { processNumberClick('2') }
         binding.number3.setOnClickListener { processNumberClick('3') }
@@ -108,7 +102,11 @@ class MainActivity : AppCompatActivity() {
         binding.number8.setOnClickListener { processNumberClick('8') }
         binding.number9.setOnClickListener { processNumberClick('9') }
 
+        binding.multiply.setOnClickListener { processOperatorClick('*') }
+        binding.divide.setOnClickListener { processOperatorClick('/') }
         binding.sum.setOnClickListener { processOperatorClick('+') }
+
+
         binding.subtract.setOnClickListener {
             if (string.isEmpty() || string == "Infinity" || string == "NaN") {
                 string = ""
@@ -118,21 +116,15 @@ class MainActivity : AppCompatActivity() {
                 processOperatorClick('-')
             }
         }
-        binding.multiply.setOnClickListener { processOperatorClick('*') }
-        binding.divide.setOnClickListener { processOperatorClick('/') }
+
+
+
 
         binding.equals.setOnClickListener {
 
-            if (string.endsWith(" ") || string.isEmpty() || string == "" || string == "-" || string.isDigitsOnly() || (string.contains(
-                    regex
-                ) && string.contains(".") && !string.contains(" + ") && !string.contains(" - ") && !string.contains(
-                    " * "
-                ) && !string.contains(" / ")) || (string.contains('-') && string.contains(regex) && !string.contains(
-                    " + "
-                ) && !string.contains(" - ") && !string.contains(
-                    " * "
-                ) && !string.contains(" / ") || string == "-.")
-            ) {
+            if (string.endsWith(" ") || string.isEmpty() || string == "" || string == "-" || string.isDigitsOnly() ||
+                (string.contains(regex) && string.contains(".") && !string.contains(" + ") && !string.contains(" - ") && !string.contains(" * ") && !string.contains(" / ")) ||
+                (string.contains('-') && string.contains(regex) && !string.contains(" + ") && !string.contains(" - ") && !string.contains(" * ") && !string.contains(" / ") || string == "-.")) {
                 string = ""
                 binding.textView.text = getString(com.amaromerovic.calculator.R.string.error)
                 return@setOnClickListener
@@ -144,38 +136,20 @@ class MainActivity : AppCompatActivity() {
 
             val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
 
-            for (i in numbers) {
-                Log.d("Test123", "Number: $i")
-            }
-
-            Log.d("Test123", "Operator $operator")
-
-
-
-            when (operator) {
-                "+" -> {
-                    string =
-                        sum(numbers[0].toDouble(), numbers[1].toDouble()).toString()
-                }
-                "-" -> {
-                    string =
-                        subtract(numbers[0].toDouble(), numbers[1].toDouble()).toString()
-                }
-                "/" -> {
-                    string =
-                        divide(numbers[0].toDouble(), numbers[1].toDouble()).toString()
-                }
-                "*" -> {
-                    string =
-                        multiply(numbers[0].toDouble(), numbers[1].toDouble()).toString()
-                }
-
+            string = when (operator) {
+                "+" -> sum(numbers[0].toDouble(), numbers[1].toDouble()).toString()
+                "-" -> subtract(numbers[0].toDouble(), numbers[1].toDouble()).toString()
+                "/" -> divide(numbers[0].toDouble(), numbers[1].toDouble()).toString()
+                "*" ->  multiply(numbers[0].toDouble(), numbers[1].toDouble()).toString()
+                else -> "Error"
             }
             binding.textView.text = string
-
         }
 
+
+
     }
+
 
     private fun sum(a: Double, b: Double): Double {
         return a + b
@@ -195,22 +169,16 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun processNumberClick(character: Char) {
-        if (string.contains(" / ") || string.contains(" + ") || string.contains(" * ") || string.contains(
-                " - "
-            )
-        ) {
+        if (string.contains(" / ") || string.contains(" + ") || string.contains(" * ") || string.contains(" - ")) {
             val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
-            if (numbers[numbers.size - 1] != "0" && (string.length < 33  || (string.contains(".") && string.length < 34))) {
+            if (numbers[numbers.size - 1] != "0" && (string.length < 33 || (string.contains(".") && string.length < 34))) {
                 addCharToString(character)
-            } else if(numbers[numbers.size - 1] == "0" && !numbers[numbers.size - 1].contains(".")) {
+            } else if (numbers[numbers.size - 1] == "0" && !numbers[numbers.size - 1].contains(".")) {
                 string = string.dropLast(1)
                 addCharToString(character)
-            }
-            else {
+            } else {
                 showSnackbar()
             }
-
-
         } else if (string == "0") {
             string = "$character"
             binding.textView.text = string
@@ -237,28 +205,20 @@ class MainActivity : AppCompatActivity() {
             } else {
                 return
             }
-        } else if (string.contains(" + ") || string.contains(" - ") || string.contains(" / ") || string.contains(
-                " * "
-            )
-        ) {
+        } else if (string.contains(" + ") || string.contains(" - ") || string.contains(" / ") || string.contains(" * ")) {
             val operatorType = string.filter { !it.isDigit() && it != '.' }
-
             var toReplace = ""
             for (i in operatorType.indices) {
-
                 if (i == 0 && operatorType[i] == '-') {
                     continue
                 } else {
                     toReplace += operatorType[i]
                 }
-
             }
-
             string = string.replace(toReplace, " $char ")
         } else {
             string += " $char "
         }
-
         binding.textView.text = string
         binding.scrollView.post {
             binding.scrollView.smoothScrollBy(
@@ -269,17 +229,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSnackbar() {
-        snackbar = Snackbar.make(
-            this.binding.root,
-            "Can't enter more than 15 digits!",
-            1000
-        )
-            .setBackgroundTint(
-                ContextCompat.getColor(
-                    this,
-                    com.amaromerovic.calculator.R.color.black
-                )
-            )
+        snackbar = Snackbar.make(this.binding.root, "Can't enter more than 15 digits!", 1000)
+        snackbar.setBackgroundTint(ContextCompat.getColor(this, com.amaromerovic.calculator.R.color.black))
         val view = snackbar.view
         val params = view.layoutParams as FrameLayout.LayoutParams
         params.gravity = Gravity.BOTTOM or Gravity.CENTER
@@ -293,6 +244,7 @@ class MainActivity : AppCompatActivity() {
         view.layoutParams = params
         snackbar.show()
     }
+
 
     private fun addCharToString(character: Char) {
         string += character

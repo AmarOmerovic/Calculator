@@ -172,7 +172,6 @@
                 android:id="@+id/dot"
                 style="@style/arithmeticStyle"
                 android:text="@string/dot"
-                android:textColor="#F1F8E9"
                 android:textSize="40sp"
                 tools:ignore="TextContrastCheck" />
 
