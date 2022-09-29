@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/text_bg_color"
+        android:scrollbars="none"
+        android:layoutDirection="rtl"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_weight="2.3">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom|end"
+            android:ellipsize="marquee"
+            android:textDirection="ltr"
+            android:fontFamily="@font/b612_bold"
+            android:importantForAutofill="no"
+            android:maxLines="5"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/number_0"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:ignore="LabelFor" />
+
+    </HorizontalScrollView>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/button_bg_color"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginBottom="-8dp"
+            app:divider="@drawable/divider"
+            app:showDividers="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number7"
+                style="@style/numberStyle"
+                android:text="@string/number_7" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number8"
+                style="@style/numberStyle"
+                android:text="@string/number_8" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number9"
+                style="@style/numberStyle"
+                android:text="@string/number_9" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/divide"
+                style="@style/arithmeticStyle"
+                android:text="@string/divide"
+                android:textSize="30sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="-8dp"
+            android:orientation="horizontal"
+            app:divider="@drawable/divider"
+            app:showDividers="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number4"
+                style="@style/numberStyle"
+                android:text="@string/number_4" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number5"
+                style="@style/numberStyle"
+                android:text="@string/number_5" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number6"
+                style="@style/numberStyle"
+                android:text="@string/number_6" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/multiply"
+                style="@style/arithmeticStyle"
+                android:paddingTop="25dp"
+                android:text="@string/multiply" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="-8dp"
+            android:orientation="horizontal"
+            app:divider="@drawable/divider"
+            app:showDividers="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number1"
+                style="@style/numberStyle"
+                android:text="@string/number_1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number2"
+                style="@style/numberStyle"
+                android:text="@string/number_2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number3"
+                style="@style/numberStyle"
+                android:text="@string/number_3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/subtract"
+                style="@style/arithmeticStyle"
+                android:text="@string/subtract" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="-8dp"
+            android:orientation="horizontal"
+            app:divider="@drawable/divider"
+            app:showDividers="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear"
+                style="@style/arithmeticStyle"
+                android:fallbackLineSpacing="false"
+                android:hapticFeedbackEnabled="false"
+                android:text="@string/clear"
+                android:textSize="25sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/number0"
+                style="@style/numberStyle"
+                android:layout_weight="1"
+                android:text="@string/number_0"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dot"
+                style="@style/arithmeticStyle"
+                android:text="@string/dot"
+                android:textColor="#F1F8E9"
+                android:textSize="40sp"
+                tools:ignore="TextContrastCheck" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sum"
+                style="@style/arithmeticStyle"
+                android:text="@string/sum" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="-8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/equals"
+                style="@style/arithmeticStyle"
+                android:text="@string/equals"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
