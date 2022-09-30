@@ -146,6 +146,10 @@ class MainActivity : AppCompatActivity() {
                 "*" ->  multiply(numbers[0].toDouble(), numbers[1].toDouble()).toString()
                 else -> "Error"
             }
+
+            if (string.endsWith(".0")) {
+                string = string.dropLast(2)
+            }
             binding.textView.text = string
         }
     }
