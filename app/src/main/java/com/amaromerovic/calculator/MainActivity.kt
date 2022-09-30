@@ -184,7 +184,10 @@ class MainActivity : AppCompatActivity() {
         } else if (string == "0") {
             string = "$character"
             binding.textView.text = string
-        } else {
+        } else if (string == "-0") {
+            string = string.dropLast(1)
+            addCharToString(character)
+        }else {
             if (string.length < 15 || (string.contains(".") && string.length < 16)) {
                 addCharToString(character)
             } else {
