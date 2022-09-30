@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.number0.setOnClickListener {
-            if (string.isEmpty()) {
+            if (string.isEmpty() || string == "-") {
                 string += "0"
                 binding.textView.text = string
                 return@setOnClickListener
