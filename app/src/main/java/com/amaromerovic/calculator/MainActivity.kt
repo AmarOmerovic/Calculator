@@ -23,12 +23,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         string = ""
+
 
         binding.clear.setOnClickListener {
             string = ""
             binding.textView.text = string
         }
+
+
 
         binding.dot.setOnClickListener {
             if (string == "-") {
@@ -102,9 +106,12 @@ class MainActivity : AppCompatActivity() {
         binding.number8.setOnClickListener { processNumberClick('8') }
         binding.number9.setOnClickListener { processNumberClick('9') }
 
+
+
         binding.multiply.setOnClickListener { processOperatorClick('*') }
         binding.divide.setOnClickListener { processOperatorClick('/') }
         binding.sum.setOnClickListener { processOperatorClick('+') }
+
 
 
         binding.subtract.setOnClickListener {
@@ -119,9 +126,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
         binding.equals.setOnClickListener {
-
             if (string.endsWith(" ") || string.isEmpty() || string == "" || string == "-" || string.isDigitsOnly() ||
                 (string.contains(regex) && string.contains(".") && !string.contains(" + ") && !string.contains(" - ") && !string.contains(" * ") && !string.contains(" / ")) ||
                 (string.contains('-') && string.contains(regex) && !string.contains(" + ") && !string.contains(" - ") && !string.contains(" * ") && !string.contains(" / ") || string == "-.")) {
@@ -131,9 +136,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             val operatorHelp = string.filter { !it.isWhitespace() && !it.isDigit() && it != '.' }
-
             val operator = operatorHelp[operatorHelp.length - 1].toString()
-
             val numbers: List<String> = string.split(" / ", " * ", " + ", " - ")
 
             string = when (operator) {
@@ -145,10 +148,8 @@ class MainActivity : AppCompatActivity() {
             }
             binding.textView.text = string
         }
-
-
-
     }
+
 
 
     private fun sum(a: Double, b: Double): Double {
@@ -166,6 +167,7 @@ class MainActivity : AppCompatActivity() {
     private fun multiply(a: Double, b: Double): Double {
         return a * b
     }
+
 
 
     private fun processNumberClick(character: Char) {
@@ -192,8 +194,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun processOperatorClick(char: Char) {
 
+    private fun processOperatorClick(char: Char) {
         if (string.isEmpty() || string == "" || string == "NaN" || string == "Infinity") {
             string = ""
             return
